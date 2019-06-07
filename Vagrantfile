@@ -21,14 +21,6 @@
 
 
 VMS = {
-  "ie6.xp.vagrant" => "http://aka.ms/ie6.winxp.vagrant.zip",
-  "ie8.xp.vagrant" => "http://aka.ms/ie8.winxp.vagrant.zip",
-  "ie7.vista.vagrant" => "http://aka.ms/ie7.vista.vagrant.zip",
-  "ie8.win7.vagrant" => "http://aka.ms/ie8.win7.vagrant.zip",
-  "ie9.win7.vagrant" => "http://aka.ms/ie9.win7.vagrant.zip",
-  "ie10.win7.vagrant" => "http://aka.ms/ie10.win7.vagrant.zip",
-  "ie11.win7.vagrant" => "http://aka.ms/ie11.win7.vagrant.zip",
-  "ie10.win8.vagrant" => "http://aka.ms/ie10.win8.vagrant.zip",
   "ie11.win81.vagrant" => "http://aka.ms/ie11.win81.vagrant",
   "msedge.win10.th1.vagrant" => "https://az792536.vo.msecnd.net/vms/VMBuild_20150916/Vagrant/boxes/MsEdge.Win10.Vagrant.zip",
   "msedge.win10.1809.vagrant" => "https://az792536.vo.msecnd.net/vms/VMBuild_20190311/Vagrant/MSEdge/MSEdge.Win10.Vagrant.zip",
@@ -61,13 +53,13 @@ end
 
 
 # # install plugins
-# required_plugins = %w( vagrant-rdp vagrant-winrm-syncedfolder vagrant-vmware-esxi )
-# required_plugins.each do |plugin|
-#   unless Vagrant.has_plugin? plugin
-#     system "vagrant plugin install #{plugin}"
-#     _retry=true
-#   end
-# end
+required_plugins = %w( vagrant-rdp vagrant-winrm-syncedfolders vagrant-vmware-esxi )
+required_plugins.each do |plugin|
+  unless Vagrant.has_plugin? plugin
+    system "vagrant plugin install #{plugin}"
+    _retry=true
+  end
+end
 
 
 # re-exec script
@@ -123,25 +115,17 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--vrde", "off"]
     end
 
-    if VM.include? "win7"
-      vb.customize ["modifyvm", :id, "--memory", "1024"]
-      vb.customize ["modifyvm", :id, "--cpus", "1"]
-    elsif VM.include? "win8"
-      vb.customize ["modifyvm", :id, "--memory", "2048"]
-      vb.customize ["modifyvm", :id, "--cpus", "1"]
-    elsif VM.include? "xp"
-      vb.customize ["modifyvm", :id, "--memory", "128"]
-      vb.customize ["modifyvm", :id, "--cpus", "1"]
-    elsif VM.include? "vista"
-      vb.customize ["modifyvm", :id, "--memory", "512"]
-      vb.customize ["modifyvm", :id, "--cpus", "1"]
+    if VM.include? "win8"
+      # Win8
+      vb.customize ["modifyvm", :id, "--memory", "4048"]
+      vb.customize ["modifyvm", :id, "--cpus", "4"]
     else
       # Win10
-      vb.customize ["modifyvm", :id, "--memory", "2048"]
-      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "4048"]
+      vb.customize ["modifyvm", :id, "--cpus", "4"]
     end
 
-    vb.customize ["modifyvm", :id, "--vram", "128"]
+    vb.customize ["modifyvm", :id, "--vram", "256"]
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
@@ -158,7 +142,7 @@ Vagrant.configure("2") do |config|
     esxi.esxi_password = "prompt:"
     esxi_virtual_network = "VM Internal"
     esxi.esxi_disk_store = "VMs"
-    esxi.guest_memsize = "2048"
-    esxi.guest_numvcpus = "2"
+    esxi.guest_memsize = "4048"
+    esxi.guest_numvcpus = "4"
   end
 end
