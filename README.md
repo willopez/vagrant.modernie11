@@ -16,6 +16,6 @@ To create a new Modern.IE box:
    
 The next boot can be done without the `FIRSTBOOT` environment variable
 
-To test an application running on port `4000` of the host, find ip address of the host, in ubuntu execute `ip address` and point your browser in the guest Windows machine to the ip addres, i.e. `http://192.168.0.110:4000`
+To test an application running on port `4000` on the host, find the ip address of the host, in Ubuntu execute `ip address` and point your browser in the guest Windows machine to the ip address + port, i.e. `http://192.168.0.110:4000`
    
 That's it!!
