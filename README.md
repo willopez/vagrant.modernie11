@@ -1,4 +1,4 @@
-# modern.ie-vagrant
+# Internet Explorer 11 on Windows 8
 
 ##### Requirements
 
