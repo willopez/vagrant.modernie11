@@ -2,8 +2,12 @@
 
 ##### Requirements
 
-- VirtualBox
-- Vagrant
+- [VirtualBox](https://www.virtualbox.org)
+
+```brew cask install virtualbox```
+- [Vagrant](https://www.vagrantup.com)
+
+```brew cask install vagrant```
 
 Modern.ie for Vagrant 
 
