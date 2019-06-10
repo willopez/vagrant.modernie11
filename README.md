@@ -1,5 +1,10 @@
 # modern.ie-vagrant
 
+#Requirements
+
+- VirtualBox
+- Vagrant
+
 Modern.ie for Vagrant 
 
 To create a new Modern.IE box:
