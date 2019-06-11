@@ -17,6 +17,8 @@ To create a new Modern.IE box:
    $ git clone https://github.com/hugsy/modern.ie-vagrant.git win8
    ```  
    * Edit `Vagrantfile` to change the line `VM = VMS[<id>]` where `id` is the index of the box you want to have (default: `Windows 8 / IE11`)
+   
+   ***NOTE*** Set `--memory` to at least 8GD and `--cpus` to 4-6 for windows to run reasonably fast.
    * For the directory, launch Vagrant the first time with the environment `FIRSTBOOT` set to `1`
    ```bash
    $ cd win8 && FIRSTBOOT=1 vagrant up
